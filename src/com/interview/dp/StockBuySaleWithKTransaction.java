@@ -17,8 +17,8 @@ public class StockBuySaleWithKTransaction {
           for( int i=1; i <= transaction; i++){
               int maxDiff = -prices[0];
               for(int j=1; j< prices.length; j++){
-                  dpMaxProfit[i][j] = Math.max( dpMaxProfit[i][j-1], prices[j] + maxDiff);
-                  maxDiff = Math.max(maxDiff,  dpMaxProfit[i-1][j]- prices[j]);
+                  dpMaxProfit[i][j] = Math.max( dpMaxProfit[i][j-1],  maxDiff + prices[j]);
+                  maxDiff = Math.max(maxDiff,              dpMaxProfit[i-1][j]- prices[j]);
               }
 
           }
