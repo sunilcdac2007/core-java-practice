@@ -6,12 +6,15 @@ public class TextJustification {
 
     public String justify(String[] words, int width){
         int cost[][] = new int[words.length][words.length];
+
+        // initializting cost
         for(int i=0; i < words.length; i++){
             cost[i][i] = width - words[i].length();
             for(int j=i+1; j < words.length; j++){
                 cost[i][j] = cost[i][j-1] - words[j].length() -1;
             }
         }
+        // making infinity value whihc is negative  and making squire which is positive
         for(int i=0; i < words.length; i++){
             for(int j=i ; j < words.length; j++){
                 if(cost[i][j] < 0){
