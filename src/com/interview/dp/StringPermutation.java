@@ -8,14 +8,17 @@ public class StringPermutation {
 
     static void main() {
         String str ="ABC";//"AAB"; //"ABC";
-        permute(str, 0, str.length()-1);
+        Set<String> result = new HashSet<>();
+        permute(str, 0, str.length()-1,result);
     }
 
-    private static void permute(String str, int startIndex, int endIndex) {
-
+    private static void permute(String str, int startIndex, int endIndex,Set<String> result) {
 
         if(startIndex == endIndex){
-            System.out.println(str);
+            if(!result.contains(str)) {
+                result.add(str);
+                System.out.println(str);
+            }
             return;
         }
         Set<Character> used = new HashSet<>();
@@ -25,12 +28,11 @@ public class StringPermutation {
                 if (used.contains(ch)) {
                     continue;
                 }
-
                 used.add(ch);
                str = swapStr(str, startIndex, i);
-               permute(str, startIndex+1, endIndex);
+               permute(str, startIndex+1, endIndex,result);
                str = swapStr(str, startIndex, i);
-
+               //used.remove(used.size()-1);
             }
 
     }
